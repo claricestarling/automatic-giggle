@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mastermind</title>
+
+    <script type="text/javascript" src="js/mastermind.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var spec = {
+                colors : 'RBYVGO',
+                codeLength : 4,
+                maxUsage : 1,
+                blanks : 0
+            };
+            var easyGame = mastermind(spec), guess, hints = [], container, content = '';
+            while (hints.join('') !== '1111') {
+                guess = window.prompt('Enter guess (' + spec.colors + ')');
+                hints = easyGame.evaluate(guess);
+
+                container = document.createElement('div');
+                container.appendChild(document.createTextNode(guess + ' ' + hints.join('')));
+                document.getElementById('body').appendChild(container);
+            }
+        });
+    </script>
+</head>
+<body id="body">
+</body>
+</html>
